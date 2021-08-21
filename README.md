@@ -1,3 +1,3 @@
-# Lab Orchestrator Lib
+# Lab Orchestrator Lib Auth
 
-This package contains the lab orchestrator library.
+This package contains the lab orchestrator library authentication module.

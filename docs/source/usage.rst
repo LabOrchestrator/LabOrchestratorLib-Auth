@@ -15,6 +15,10 @@ To use LabOrchestratorLib-Auth, first install it using pip:
 Creating Tokens
 ----------------
 
+Test autofunction 1:
+
+.. autofunction:: lab_orchestrator_lib_auth.auth.generate_auth_token
+
 To create a JWT token you can use the ``auth.generate_auth_token(...)`` function:
 
 .. autofunction:: auth.generate_auth_token

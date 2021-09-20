@@ -2,8 +2,8 @@ Fixes: #.
 
 Before merge:
 - [ ] Increased the version number in `src/lab_orchestrator_lib_auth/__init__.py`.
-- [ ] Updated docs and increased version in `docs/source/conf.py`.
-- [ ] Add new dependencies to `requirements.txt`, `requirements-dev.txt` and `docs/requirements.txt`
+- [ ] Updated docs.
+- [ ] Added new dependencies to `requirements.txt`, `requirements-dev.txt` and `docs/requirements.txt`
 
 After merge:
 - [ ] Made a release to pypi.

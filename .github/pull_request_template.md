@@ -7,5 +7,5 @@ Before merge:
 
 After merge:
 - [ ] Made a release to pypi.
-- [ ] Made a release to read the docs.
 - [ ] Tagged the last commit to the version number.
+- [ ] Verify the read the docs build works.

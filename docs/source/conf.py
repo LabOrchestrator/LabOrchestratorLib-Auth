@@ -4,9 +4,11 @@ import re
 from os.path import abspath, dirname, join
 
 # add src to path
-sys.path.append("../src")
 
 CURDIR = dirname(abspath(__file__))
+ROOT = dirname(dirname(dirname(abspath(__file__))))
+
+sys.path.append(join(ROOT, "src"))
 
 with open(join(CURDIR, '..', '..', 'src', 'lab_orchestrator_lib_auth', '__init__.py'), "r", encoding="utf-8") as f:
     VERSION = re.search('^__version__ = "(.*)"', f.read()).group(1)

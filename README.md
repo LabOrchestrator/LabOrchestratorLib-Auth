@@ -6,6 +6,10 @@ This package contains the lab orchestrator library authentication module.
 
 - `pip3 install lab-orchestrator-lib-auth`
 
+## Documentation
+
+Check out the developer documentation at [laborchestratorlib-auth.readthedocs.io](https://laborchestratorlib-auth.readthedocs.io/en/latest/index.html).
+
 ## Usage
 
 The library contains one module called auth that contains 3 methods and one dataclass.
@@ -15,6 +19,8 @@ The first method `generate_auth_token` is used to generate a JWT token. The toke
 The next method `decode_auth_token` decodes the previously encoded JWT token. It returns the information that is contained in the token.
 
 The third method `verify_auth_token` contains the parameter `vmi_name` and checks if this `vmi_name` is allowed. If it's not allowed the method will return none.
+
+See more at: [laborchestratorlib-auth.readthedocs.io](https://laborchestratorlib-auth.readthedocs.io/en/latest/index.html).
 
 ## Examples
 
@@ -28,7 +34,7 @@ Feel free to open [issues](https://github.com/LabOrchestrator/LabOrchestratorLib
 
 ### Project Structure
 
-The `src` folder contains the source code of the library. The `tests` folder contains the test cases. `examples` contains some example scripts of how to use the library. There is a makefile that contains some shortcuts for example to run the test cases and to make a release. Run `make help` to see all targets.
+The `src` folder contains the source code of the library. The `tests` folder contains the test cases. `examples` contains some example scripts of how to use the library. There is a makefile that contains some shortcuts for example to run the test cases and to make a release. Run `make help` to see all targets. The `docs` folder contains rst docs that are used in [read the docs](https://laborchestratorlib-auth.readthedocs.io/en/latest/)
 
 ### Developer Dependencies
 
@@ -52,3 +58,7 @@ Admin part:
 1. Check and accept MR
 2. Merge MR
 3. Run `make release`
+
+### Docs
+
+To generate the docs run: `cd docs && make html`.

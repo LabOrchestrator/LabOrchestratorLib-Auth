@@ -4,5 +4,5 @@ API
 .. autosummary::
    :toctree: generated
 
-   lumache
+   lab_orchestrator_lib_auth.auth
 

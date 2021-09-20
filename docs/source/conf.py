@@ -1,4 +1,5 @@
 # Configuration file for the Sphinx documentation builder.
+import sys
 
 # -- Project information
 
@@ -17,6 +18,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
+    'sphinx_autodoc_typehints',
 ]
 
 intersphinx_mapping = {
@@ -34,4 +36,4 @@ html_theme = 'sphinx_rtd_theme'
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
 
-srcdir = "src"
+sys.path.append("../src")

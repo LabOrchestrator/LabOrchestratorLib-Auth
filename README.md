@@ -34,7 +34,7 @@ Feel free to open [issues](https://github.com/LabOrchestrator/LabOrchestratorLib
 
 ### Project Structure
 
-The `src` folder contains the source code of the library. The `tests` folder contains the test cases. `examples` contains some example scripts of how to use the library. There is a makefile that contains some shortcuts for example to run the test cases and to make a release. Run `make help` to see all targets. The `docs` folder contains rst docs that are used in [read the docs](https://laborchestratorlib-auth.readthedocs.io/en/latest/)
+The `src` folder contains the source code of the library. The `tests` folder contains the test cases. `examples` contains some example scripts of how to use the library. There is a makefile that contains some shortcuts for example to run the test cases and to make a release. Run `make help` to see all targets. The `docs` folder contains rst docs that are used in [read the docs](https://laborchestratorlib-auth.readthedocs.io/en/latest/).
 
 ### Developer Dependencies
 

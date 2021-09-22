@@ -1,8 +1,19 @@
-![](https://img.shields.io/librariesio/release/pypi/lab-orchestrator-lib-auth)
+[![Status](https://img.shields.io/pypi/status/lab-orchestrator-lib-auth)](https://pypi.org/project/lab-orchestrator-lib-auth/)
+[![Version](https://img.shields.io/pypi/v/lab-orchestrator-lib-auth?label=release)](https://pypi.org/project/lab-orchestrator-lib-auth/)
+[![License](https://img.shields.io/github/license/laborchestrator/laborchestratorlib-auth)](https://github.com/LabOrchestrator/LabOrchestratorLib-Auth/blob/main/LICENSE)
+[![Issues](https://img.shields.io/github/issues/laborchestrator/laborchestratorlib-auth)](https://github.com/laborchestrator/laborchestratorlib-auth/issues)
+[![Downloads](https://img.shields.io/pypi/dw/lab-orchestrator-lib-auth)](https://pypi.org/project/lab-orchestrator-lib-auth/)
+[![Dependencies](https://img.shields.io/librariesio/release/pypi/lab-orchestrator-lib-auth)](https://libraries.io/pypi/lab-orchestrator-lib-auth)
+[![Docs](https://img.shields.io/readthedocs/laborchestratorlib-auth)](https://laborchestratorlib-auth.readthedocs.io/en/latest/)
+
 
 # Lab Orchestrator Lib Auth
 
 This package contains the lab orchestrator library authentication module.
+
+[Github](https://github.com/LabOrchestrator/LabOrchestratorLib-Auth)  
+[PyPi](https://pypi.org/project/lab-orchestrator-lib-auth/)  
+[Read The Docs](https://laborchestratorlib-auth.readthedocs.io/en/latest/index.html)
 
 ## Installation
 

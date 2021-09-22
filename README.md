@@ -1,3 +1,5 @@
+![](https://img.shields.io/librariesio/release/pypi/lab-orchestrator-lib-auth)
+
 # Lab Orchestrator Lib Auth
 
 This package contains the lab orchestrator library authentication module.

@@ -28,7 +28,7 @@ class LabInstanceTokenParams:
 
 
 def generate_auth_token(user_id: Identifier, lab_instance_token_params: LabInstanceTokenParams,
-                        secret_key: str, expires_in: int = 600) -> str:
+                        secret_key: str, expires_in: int = 600, expires_at: int = None) -> str:
     """Generates a JWT token.
 
     :param user_id: Id of the user.
@@ -37,9 +37,12 @@ def generate_auth_token(user_id: Identifier, lab_instance_token_params: LabInsta
     :param expires_in: Amount of seconds the token is valid.
     :return: A JWT token.
     """
+    if not expires_at:
+        expires_at = time.time() + expires_in
+
     return jwt.encode({
         'id': user_id,
-        'exp': time.time() + expires_in,
+        'exp': expires_at,
         'lab_instance': {
             'lab_id': lab_instance_token_params.lab_id,
             'lab_instance_id': lab_instance_token_params.lab_instance_id,

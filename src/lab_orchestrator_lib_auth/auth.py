@@ -3,7 +3,7 @@
 This module contains the authentication methods that are used by the LabOrchestrator.
 """
 from dataclasses import dataclass
-from typing import Optional, Union, List
+from typing import Optional, Tuple, Union, List
 
 import jwt
 import time
@@ -68,7 +68,7 @@ def decode_auth_token(token: str, secret_key: str) -> Optional[LabInstanceTokenP
 
 
 
-def verify_auth_token(token: str, vmi_name: str, secret_key: str) -> Union[bool, LabInstanceTokenParams]:
+def verify_auth_token(token: str, vmi_name: str, secret_key: str) -> Tuple[bool, LabInstanceTokenParams]:
     """Decodes a token and verifies if it's valid.
 
     Checks if the vmi_name is allowed in the token.
@@ -78,7 +78,7 @@ def verify_auth_token(token: str, vmi_name: str, secret_key: str) -> Union[bool,
     :param secret_key: Key that is used to decrypt the token.
     :return: The result of the verification as a boolean and the data contained in the token
     """
-    
+
     data = decode_auth_token(token, secret_key)
     is_allowed = data is None or vmi_name not in data.allowed_vmi_names
 

@@ -58,16 +58,14 @@ def decode_auth_token(token: str, secret_key: str) -> Optional[LabInstanceTokenP
     :param secret_key: Key that should be used to decrypt the token.
     :return: The data that is contained in the token or None if decode goes wrong.
     """
-    try:
-        data = jwt.decode(token, secret_key, algorithms=['HS256'])
-        return LabInstanceTokenParams(
-            lab_id=data['lab_instance']['lab_id'],
-            lab_instance_id=data['lab_instance']['lab_instance_id'],
-            namespace_name=data['lab_instance']['namespace_name'],
-            allowed_vmi_names=data['lab_instance']['allowed_vmi_names']
-        )
-    except:
-        return None
+    data = jwt.decode(token, secret_key, algorithms=['HS256'])
+    return LabInstanceTokenParams(
+        lab_id=data['lab_instance']['lab_id'],
+        lab_instance_id=data['lab_instance']['lab_instance_id'],
+        namespace_name=data['lab_instance']['namespace_name'],
+        allowed_vmi_names=data['lab_instance']['allowed_vmi_names']
+    )
+
 
 
 def verify_auth_token(token: str, vmi_name: str, secret_key: str) -> Optional[LabInstanceTokenParams]:

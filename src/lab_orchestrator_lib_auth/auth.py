@@ -80,6 +80,7 @@ def verify_auth_token(token: str, vmi_name: str, secret_key: str) -> Tuple[bool,
     """
 
     data = decode_auth_token(token, secret_key)
-    is_allowed = data is None or vmi_name not in data.allowed_vmi_names
+    print(data)
+    is_forbidden = data is None or vmi_name not in data.allowed_vmi_names
 
-    return is_allowed, LabInstanceTokenParams
+    return not is_forbidden, LabInstanceTokenParams

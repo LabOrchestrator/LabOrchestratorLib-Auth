@@ -28,13 +28,14 @@ class LabInstanceTokenParams:
 
 
 def generate_auth_token(user_id: Identifier, lab_instance_token_params: LabInstanceTokenParams,
-                        secret_key: str, expires_in: int = 600, expires_at: int = None) -> str:
+                        secret_key: str, expires_in: int = 600, expires_at: Optional[int] = None) -> str:
     """Generates a JWT token.
 
     :param user_id: Id of the user.
     :param lab_instance_token_params: The data that is included in the token.
     :param secret_key: The secret key that is used to decrypt the token.
     :param expires_in: Amount of seconds the token is valid.
+    :param expires_at: Optional UNIX time at which this token expires. Overwrites expires_in.
     :return: A JWT token.
     """
     if not expires_at:
@@ -77,9 +78,11 @@ def verify_auth_token(token: str, vmi_name: str, secret_key: str) -> Tuple[bool,
     :param vmi_name: The vmi_name the user wants to use.
     :param secret_key: Key that is used to decrypt the token.
     :return: The result of the verification as a boolean and the data contained in the token
+    :raises: Any errors occuring while validation
+
     """
 
     data = decode_auth_token(token, secret_key)
-    is_forbidden = data is None or vmi_name not in data.allowed_vmi_names
+    is_forbidden = vmi_name not in data.allowed_vmi_names
 
     return not is_forbidden, data

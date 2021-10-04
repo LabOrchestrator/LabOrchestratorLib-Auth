@@ -7,7 +7,7 @@ from src.lab_orchestrator_lib_auth.auth import verify_auth_token, LabInstanceTok
 class VerifyAuthTokenTestCase(unittest.TestCase):
     def test_allowed_token_verification(self):
         # define token that allows access to vmi specified below.
-        token = b'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwiZXhwIjo4NjMzMjcyMDQ4LCJsYWJfaW5zdGFuY2UiOnsibGFiX2lkIjoxLCJsYWJfaW5zdGFuY2VfaWQiOjksIm5hbWVzcGFjZV9uYW1lIjoicGVudGVzdC11YnVudHUtMy05IiwiYWxsb3dlZF92bWlfbmFtZXMiOlsidWJ1bnR1Il19fQ.dRmdjiuKdFeyu2HHJWJQVspW1Aw1rMB6dJQe7LoLZww'
+        token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwiZXhwIjo4NjMzMjcyMDQ4LCJsYWJfaW5zdGFuY2UiOnsibGFiX2lkIjoxLCJsYWJfaW5zdGFuY2VfaWQiOjksIm5hbWVzcGFjZV9uYW1lIjoicGVudGVzdC11YnVudHUtMy05IiwiYWxsb3dlZF92bWlfbmFtZXMiOlsidWJ1bnR1Il19fQ.dRmdjiuKdFeyu2HHJWJQVspW1Aw1rMB6dJQe7LoLZww'
         vmi_name = "ubuntu"
 
         expiry_time = 1633276902
@@ -25,7 +25,6 @@ class VerifyAuthTokenTestCase(unittest.TestCase):
 
         # verify that token is allowed for vmi
         self.assertTrue(verify_result)
-        print(type(verify_result_data))
 
         # check if all the fields are correct
         self.assertEqual(lab_id, verify_result_data.lab_id)
@@ -35,7 +34,7 @@ class VerifyAuthTokenTestCase(unittest.TestCase):
     
     def test_forbidden_token_verification(self):
         # define token which does not allow access to the vmi specified below.
-        token = b'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwiZXhwIjo4NjMzMjcyMDQ4LCJsYWJfaW5zdGFuY2UiOnsibGFiX2lkIjoxLCJsYWJfaW5zdGFuY2VfaWQiOjksIm5hbWVzcGFjZV9uYW1lIjoicGVudGVzdC11YnVudHUtMy05IiwiYWxsb3dlZF92bWlfbmFtZXMiOlsidWJ1bnR1Il19fQ.dRmdjiuKdFeyu2HHJWJQVspW1Aw1rMB6dJQe7LoLZww'
+        token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwiZXhwIjo4NjMzMjcyMDQ4LCJsYWJfaW5zdGFuY2UiOnsibGFiX2lkIjoxLCJsYWJfaW5zdGFuY2VfaWQiOjksIm5hbWVzcGFjZV9uYW1lIjoicGVudGVzdC11YnVudHUtMy05IiwiYWxsb3dlZF92bWlfbmFtZXMiOlsidWJ1bnR1Il19fQ.dRmdjiuKdFeyu2HHJWJQVspW1Aw1rMB6dJQe7LoLZww'
         vmi_name = "manjaro"
 
         expiry_time = 1633276902
@@ -53,7 +52,6 @@ class VerifyAuthTokenTestCase(unittest.TestCase):
 
         # verify that token is allowed for vmi
         self.assertFalse(verify_result)
-        print(type(verify_result_data))
 
         # check if all the fields are correct
         self.assertEqual(lab_id, verify_result_data.lab_id)

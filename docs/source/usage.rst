@@ -49,3 +49,13 @@ To verfiy a JWT token you can use the ``lab_orchestrator_lib_auth.auth.verify_au
 .. autofunction:: lab_orchestrator_lib_auth.auth.verify_auth_token
 
 This function checks if the given ``vmi_name`` is allowed in the token.
+
+
+Exceptions
+----------
+
+.. automodule:: jwt.exceptions
+    :members:
+    :undoc-members:
+    :show-inheritance:
+    :member-order: bysource

@@ -28,7 +28,10 @@ class LabInstanceTokenParams:
 
 
 def generate_auth_token(user_id: Identifier, lab_instance_token_params: LabInstanceTokenParams,
-                        secret_key: str, expires_in: int = 600, expires_at: Optional[int] = None) -> str:
+                        secret_key: str, expires_in: int = 600,
+                        expires_at: Optional[int] = None,
+                        algorithm: str = 'HS256'
+                        ) -> str:
     """Generates a JWT token.
 
     :param user_id: Id of the user.
@@ -36,6 +39,7 @@ def generate_auth_token(user_id: Identifier, lab_instance_token_params: LabInsta
     :param secret_key: The secret key that is used to decrypt the token.
     :param expires_in: Amount of seconds the token is valid.
     :param expires_at: Optional UNIX time at which this token expires. Overwrites expires_in.
+    :param algorithm: Algorithm that should be used for creating the token. Available algorithms: https://pyjwt.readthedocs.io/en/latest/algorithms.html
     :return: A JWT token.
     """
     if not expires_at:
@@ -49,14 +53,15 @@ def generate_auth_token(user_id: Identifier, lab_instance_token_params: LabInsta
             'lab_instance_id': lab_instance_token_params.lab_instance_id,
             'namespace_name': lab_instance_token_params.namespace_name,
             'allowed_vmi_names': lab_instance_token_params.allowed_vmi_names
-        }}, secret_key, algorithm='HS256')
+        }}, secret_key, algorithm=algorithm)
 
 
-def decode_auth_token(token: str, secret_key: str) -> LabInstanceTokenParams:
+def decode_auth_token(token: str, secret_key: str, algorithms: Optional[List[str]] = None) -> LabInstanceTokenParams:
     """Decodes a JWT token.
 
     :param token: The token to decode.
     :param secret_key: Key that should be used to decrypt the token.
+    :param algorithms: Allowed algorithms. If None, ['HS256'] is used.
     :return: The data that is contained in the token or None if decode goes wrong.
     :raise jwt.exceptions.DecodeError: Raised when a token cannot be decoded because it failed validation.
     :raise jwt.exceptions.InvalidSignatureError: Raised when a token’s signature doesn’t match the one provided as part of the token.
@@ -69,7 +74,9 @@ def decode_auth_token(token: str, secret_key: str) -> LabInstanceTokenParams:
     :raise jwt.exceptions.InvalidAlgorithmError: Raised when the specified algorithm is not recognized by PyJWT.
     :raise jwt.exceptions.MissingRequiredClaimError: Raised when a claim that is required to be present is not contained in the claimset.
     """
-    data = jwt.decode(token, secret_key, algorithms=['HS256'])
+    if algorithms is None:
+        algorithms = ['HS256']
+    data = jwt.decode(token, secret_key, algorithms=algorithms)
     return LabInstanceTokenParams(
         lab_id=data['lab_instance']['lab_id'],
         lab_instance_id=data['lab_instance']['lab_instance_id'],
@@ -78,8 +85,7 @@ def decode_auth_token(token: str, secret_key: str) -> LabInstanceTokenParams:
     )
 
 
-
-def verify_auth_token(token: str, vmi_name: str, secret_key: str) -> Tuple[bool, LabInstanceTokenParams]:
+def verify_auth_token(token: str, vmi_name: str, secret_key: str, algorithms: Optional[List[str]] = None) -> Tuple[bool, LabInstanceTokenParams]:
     """Decodes a token and verifies if it's valid.
 
     Checks if the vmi_name is allowed in the token.
@@ -100,7 +106,7 @@ def verify_auth_token(token: str, vmi_name: str, secret_key: str) -> Tuple[bool,
     :raise jwt.exceptions.MissingRequiredClaimError: Raised when a claim that is required to be present is not contained in the claimset.
     """
 
-    data = decode_auth_token(token, secret_key)
+    data = decode_auth_token(token, secret_key, algorithms=algorithms)
     is_forbidden = vmi_name not in data.allowed_vmi_names
 
     return not is_forbidden, data

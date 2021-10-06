@@ -32,6 +32,11 @@ For example:
 >>> lab_orchestrator_lib_auth.auth.generate_auth_token(5, param, "secret")
 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwiZXhwIjoxNjMyMTM3OTExLjc5NTg1NjcsImxhYl9pbnN0YW5jZSI6eyJsYWJfaWQiOjEsImxhYl9pbnN0YW5jZV9pZCI6OSwibmFtZXNwYWNlX25hbWUiOiJwZW50ZXN0LXVidW50dS0zLTkiLCJhbGxvd2VkX3ZtaV9uYW1lcyI6WyJ1YnVudHUiXX19.ag6f2OsBP5FFyDN9kEw_ivesT8Pa0jGMp2eKjRM9iCs'
 
+To create tokens with asymmetric keys install ``pyjwt[crypto]`` and take a look at these two links:
+
+* `https://pyjwt.readthedocs.io/en/latest/usage.html#encoding-decoding-tokens-with-rs256-rsa <https://pyjwt.readthedocs.io/en/latest/usage.html#encoding-decoding-tokens-with-rs256-rsa>`_
+* `https://gist.github.com/ygotthilf/baa58da5c3dd1f69fae9 <https://gist.github.com/ygotthilf/baa58da5c3dd1f69fae9>`_
+
 Decoding Tokens
 ---------------
 

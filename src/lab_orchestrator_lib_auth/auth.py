@@ -52,7 +52,7 @@ def generate_auth_token(user_id: Identifier, lab_instance_token_params: LabInsta
         }}, secret_key, algorithm='HS256')
 
 
-def decode_auth_token(token: str, secret_key: str) -> Optional[LabInstanceTokenParams]:
+def decode_auth_token(token: str, secret_key: str) -> LabInstanceTokenParams:
     """Decodes a JWT token.
 
     :param token: The token to decode.

@@ -58,17 +58,16 @@ def decode_auth_token(token: str, secret_key: str) -> LabInstanceTokenParams:
     :param token: The token to decode.
     :param secret_key: Key that should be used to decrypt the token.
     :return: The data that is contained in the token or None if decode goes wrong.
-    :raise:
-        jwt.exceptions.DecodeError: Raised when a token cannot be decoded because it failed validation.
-        jwt.exceptions.InvalidSignatureError: Raised when a token’s signature doesn’t match the one provided as part of the token.
-        jwt.exceptions.ExpiredSignatureError: Raised when a token’s exp claim indicates that it has expired.
-        jwt.exceptions.InvalidAudienceError: Raised when a token’s aud claim does not match one of the expected audience values.
-        jwt.exceptions.InvalidIssuerError: Raised when a token’s iss claim does not match the expected issuer
-        jwt.exceptions.InvalidIssuedAtError: Raised when a token’s iat claim is in the future
-        jwt.exceptions.ImmatureSignatureError: Raised when a token’s nbf claim represents a time in the future
-        jwt.exceptions.InvalidKeyError: Raised when the specified key is not in the proper format
-        jwt.exceptions.InvalidAlgorithmError: Raised when the specified algorithm is not recognized by PyJWT
-        jwt.exceptions.MissingRequiredClaimError: Raised when a claim that is required to be present is not contained in the claimset
+    :raise jwt.exceptions.DecodeError: Raised when a token cannot be decoded because it failed validation.
+    :raise jwt.exceptions.InvalidSignatureError: Raised when a token’s signature doesn’t match the one provided as part of the token.
+    :raise jwt.exceptions.ExpiredSignatureError: Raised when a token’s exp claim indicates that it has expired.
+    :raise jwt.exceptions.InvalidAudienceError: Raised when a token’s aud claim does not match one of the expected audience values.
+    :raise jwt.exceptions.InvalidIssuerError: Raised when a token’s iss claim does not match the expected issuer.
+    :raise jwt.exceptions.InvalidIssuedAtError: Raised when a token’s iat claim is in the future.
+    :raise jwt.exceptions.ImmatureSignatureError: Raised when a token’s nbf claim represents a time in the future.
+    :raise jwt.exceptions.InvalidKeyError: Raised when the specified key is not in the proper format.
+    :raise jwt.exceptions.InvalidAlgorithmError: Raised when the specified algorithm is not recognized by PyJWT.
+    :raise jwt.exceptions.MissingRequiredClaimError: Raised when a claim that is required to be present is not contained in the claimset.
     """
     data = jwt.decode(token, secret_key, algorithms=['HS256'])
     return LabInstanceTokenParams(
@@ -88,18 +87,17 @@ def verify_auth_token(token: str, vmi_name: str, secret_key: str) -> Tuple[bool,
     :param token: The token to decode and verify.
     :param vmi_name: The vmi_name the user wants to use.
     :param secret_key: Key that is used to decrypt the token.
-    :return: The result of the verification as a boolean and the data contained in the token
-    :raise:
-        jwt.exceptions.DecodeError: Raised when a token cannot be decoded because it failed validation.
-        jwt.exceptions.InvalidSignatureError: Raised when a token’s signature doesn’t match the one provided as part of the token.
-        jwt.exceptions.ExpiredSignatureError: Raised when a token’s exp claim indicates that it has expired.
-        jwt.exceptions.InvalidAudienceError: Raised when a token’s aud claim does not match one of the expected audience values.
-        jwt.exceptions.InvalidIssuerError: Raised when a token’s iss claim does not match the expected issuer
-        jwt.exceptions.InvalidIssuedAtError: Raised when a token’s iat claim is in the future
-        jwt.exceptions.ImmatureSignatureError: Raised when a token’s nbf claim represents a time in the future
-        jwt.exceptions.InvalidKeyError: Raised when the specified key is not in the proper format
-        jwt.exceptions.InvalidAlgorithmError: Raised when the specified algorithm is not recognized by PyJWT
-        jwt.exceptions.MissingRequiredClaimError: Raised when a claim that is required to be present is not contained in the claimset
+    :return: The result of the verification as a boolean and the data contained in the token.
+    :raise jwt.exceptions.DecodeError: Raised when a token cannot be decoded because it failed validation.
+    :raise jwt.exceptions.InvalidSignatureError: Raised when a token’s signature doesn’t match the one provided as part of the token.
+    :raise jwt.exceptions.ExpiredSignatureError: Raised when a token’s exp claim indicates that it has expired.
+    :raise jwt.exceptions.InvalidAudienceError: Raised when a token’s aud claim does not match one of the expected audience values.
+    :raise jwt.exceptions.InvalidIssuerError: Raised when a token’s iss claim does not match the expected issuer.
+    :raise jwt.exceptions.InvalidIssuedAtError: Raised when a token’s iat claim is in the future.
+    :raise jwt.exceptions.ImmatureSignatureError: Raised when a token’s nbf claim represents a time in the future.
+    :raise jwt.exceptions.InvalidKeyError: Raised when the specified key is not in the proper format.
+    :raise jwt.exceptions.InvalidAlgorithmError: Raised when the specified algorithm is not recognized by PyJWT.
+    :raise jwt.exceptions.MissingRequiredClaimError: Raised when a claim that is required to be present is not contained in the claimset.
     """
 
     data = decode_auth_token(token, secret_key)

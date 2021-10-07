@@ -23,7 +23,7 @@ The ``user_id`` parameter should be either of type ``str`` or ``int`` and contai
 
 .. autoclass:: lab_orchestrator_lib_auth.auth.LabInstanceTokenParams
 
-The ``allowed_vmi_names`` parameter is a list of the VM-names the user is allowed to access. So you can use one token for accessing multiple VMs in a lab.
+The ``allowed_vmi_names`` parameter is a list of the VM-names the user is allowed to access. So you can use one token for accessing multiple VMs in a lab. The ``additional_data`` parameter can be a dictionary of json serialisable data or None. This parameter is used to add more data without always changing the auth library.
 
 For example:
 

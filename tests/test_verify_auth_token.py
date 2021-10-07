@@ -7,7 +7,7 @@ from src.lab_orchestrator_lib_auth.auth import verify_auth_token, LabInstanceTok
 class VerifyAuthTokenTestCase(unittest.TestCase):
     def test_allowed_token_verification(self):
         # define token that allows access to vmi specified below.
-        token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwiZXhwIjo4NjMzMjcyMDQ4LCJsYWJfaW5zdGFuY2UiOnsibGFiX2lkIjoxLCJsYWJfaW5zdGFuY2VfaWQiOjksIm5hbWVzcGFjZV9uYW1lIjoicGVudGVzdC11YnVudHUtMy05IiwiYWxsb3dlZF92bWlfbmFtZXMiOlsidWJ1bnR1Il19fQ.dRmdjiuKdFeyu2HHJWJQVspW1Aw1rMB6dJQe7LoLZww'
+        token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwiZXhwIjo4NjMzMjcyMDQ4LCJsYWJfaW5zdGFuY2UiOnsibGFiX2lkIjoxLCJsYWJfaW5zdGFuY2VfaWQiOjksIm5hbWVzcGFjZV9uYW1lIjoicGVudGVzdC11YnVudHUtMy05IiwiYWxsb3dlZF92bWlfbmFtZXMiOlsidWJ1bnR1Il0sImFkZGl0aW9uYWxfZGF0YSI6bnVsbH19.AprOiLu5PP38vawJ3il8gT3hu36VpOXIyjSbfO-_liU'
         vmi_name = "ubuntu"
 
         expiry_time = 1633276902
@@ -34,7 +34,7 @@ class VerifyAuthTokenTestCase(unittest.TestCase):
 
     def test_forbidden_token_verification(self):
         # define token which does not allow access to the vmi specified below.
-        token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwiZXhwIjo4NjMzMjcyMDQ4LCJsYWJfaW5zdGFuY2UiOnsibGFiX2lkIjoxLCJsYWJfaW5zdGFuY2VfaWQiOjksIm5hbWVzcGFjZV9uYW1lIjoicGVudGVzdC11YnVudHUtMy05IiwiYWxsb3dlZF92bWlfbmFtZXMiOlsidWJ1bnR1Il19fQ.dRmdjiuKdFeyu2HHJWJQVspW1Aw1rMB6dJQe7LoLZww'
+        token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwiZXhwIjo4NjMzMjcyMDQ4LCJsYWJfaW5zdGFuY2UiOnsibGFiX2lkIjoxLCJsYWJfaW5zdGFuY2VfaWQiOjksIm5hbWVzcGFjZV9uYW1lIjoicGVudGVzdC11YnVudHUtMy05IiwiYWxsb3dlZF92bWlfbmFtZXMiOlsidWJ1bnR1Il0sImFkZGl0aW9uYWxfZGF0YSI6bnVsbH19.AprOiLu5PP38vawJ3il8gT3hu36VpOXIyjSbfO-_liU'
         vmi_name = "manjaro"
 
         expiry_time = 1633276902
@@ -59,9 +59,9 @@ class VerifyAuthTokenTestCase(unittest.TestCase):
         self.assertEqual(namespace_name, verify_result_data.namespace_name)
         self.assertEqual(allowed_vmi_names, verify_result_data.allowed_vmi_names)
 
-    def test_allowed_token_verification(self):
+    def test_allowed_asym_token_verification(self):
         # define token that allows access to vmi specified below.
-        token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpZCI6NSwiZXhwIjo4NjMzMjcyMDQ4LCJsYWJfaW5zdGFuY2UiOnsibGFiX2lkIjoxLCJsYWJfaW5zdGFuY2VfaWQiOjksIm5hbWVzcGFjZV9uYW1lIjoicGVudGVzdC11YnVudHUtMy05IiwiYWxsb3dlZF92bWlfbmFtZXMiOlsidWJ1bnR1Il19fQ.Z9foeGq9hk4sdCLzWCUdgq6qz_mX2YfWgSzxyJyGY-8q4Zv48GRdvw96SM1RlUaBu_gaRX6mXF-n6lBzXQx65KAyhuktPZF0gPpGuMQEUXe-J1n-YO5qKq7QJ-5_XLAxkiFBNnzWO4x4jbppVPFdfTKamB43YwNCbppF9dUNGkOR1Xsbo1EQ4ihr705EKBMVUObVWZmfF1AWrSiVXVKxJkw-WrHu9QQWgTKY75ai5u0O3yDrJOoMJ0n0ItFOWXSFVtphTicFff-pKz5DNIpipq0N7lUOtYqtRB21qV7lyYW8oJE7iaQLnARwKTo3eX-7Fy2_viDYk0woxKzb9mtBIg3mIFfU6S1sgHHjDgt18ciuzKq2wFqYA2a09liFJkSLYo9qP9EtkH0cPo2rTDcRShJ5fJa67UDZ5HsnLql78TR3X0i3qs_p7E0UaqE23dGCLPHPNPeILWKXqKduuBpz8_v-2ajDH4t-bt543ZYpX-sZF-lYHbYrwWANon_HCzcRRupMMmvxxKXOEl8RP4s0Bk5g9_oajuH4Tbr3TiHbqdI3xayCkPC4vgXCNVSg6gsUQLeurNsbGfzgfkIAGOeEl9rxWuDDpGi6YQcXlq4Mr-gyj61HzMkoNMbi93hqo-sT1-K2_sq6ZiWZ2fGaWVcNsvt8fBu5mTfNI10ZuaX-G_k'
+        token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpZCI6NSwiZXhwIjo4NjMzMjcyMDQ4LCJsYWJfaW5zdGFuY2UiOnsibGFiX2lkIjoxLCJsYWJfaW5zdGFuY2VfaWQiOjksIm5hbWVzcGFjZV9uYW1lIjoicGVudGVzdC11YnVudHUtMy05IiwiYWxsb3dlZF92bWlfbmFtZXMiOlsidWJ1bnR1Il0sImFkZGl0aW9uYWxfZGF0YSI6bnVsbH19.JT59LeFYZTxQ5QA2CbNoMxUujWQ5iAuG01e6DE5dID_WxjCQtPi6VBt1sEy7wyeBHbXw3CoJaehH8_zGMsGmO4tbdMtEFJ_zhymCvZyFubhYPDUNZMhcFRFbdRH-v8eg_v2EvyJyB1-tG9LZWLDrBU439GYdC5lFyY0bln6ZtDTTm0dWcWakboQ6w9y7wEGyr-mpWt09Dv6YdzLvwPhDOJRleld-DfsSnOSZy8Y7J3hT3tmUpjmNxfWclYAeVrHSPiG37ECkc3ebMBnMAk6AKYsK4U6mDvSvd4xvEb_2ZBMkxMzYei171wEIaTkYMU7hAPtK-_NpzjI6cZAlBqQt8glnNDhbanKJfreNUEuTIXA9hr0kvhQORzZ81QXJC0Iug7IkQOsHnnWGq9FvrJvY6cULib4GbL_g_jc4tONDEj0LD4Of4uXFesn7PEvQN9OIT5k1ERUgQOU95EylqY-IrXbnoaTJ6IERiiI8_55lUszW4LHW5fc5dqLcO9Ij6hKKFBK6uyq4CVjdadpgwa-oOhJsGSw4ICo9ZRNMOOcWNmZjfB72HeGAbw4sbtDuXSPPvvoGxe7ftOxPrSUKNh9-L_qraFfl8z2FsN1PtLtC8oRiOhl6PvcpmbDJGppnVG5QCuo6q6woCngKFB-YFKyScN_5nbLbaDSY3FI6pKU6dW0'
         vmi_name = "ubuntu"
 
         expiry_time = 1633276902

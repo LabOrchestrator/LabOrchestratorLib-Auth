@@ -28,7 +28,7 @@ class LabInstanceTokenParams:
 
 
 def generate_auth_token(user_id: Identifier, lab_instance_token_params: LabInstanceTokenParams,
-                        secret_key: str, expires_in: int = 600,
+                        secret_key: str, expires_in: int = 60 * 60,
                         expires_at: Optional[int] = None,
                         algorithm: str = 'HS256'
                         ) -> str:

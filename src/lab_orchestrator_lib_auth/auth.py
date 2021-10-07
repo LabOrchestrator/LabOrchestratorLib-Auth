@@ -3,7 +3,7 @@
 This module contains the authentication methods that are used by the LabOrchestrator.
 """
 from dataclasses import dataclass
-from typing import Optional, Tuple, Union, List
+from typing import Optional, Tuple, Union, List, Dict, Any
 
 import jwt
 import time
@@ -20,11 +20,13 @@ class LabInstanceTokenParams:
     :param lab_instance_id: The id of the lab instance.
     :param namespace_name: Name of the namespace the VMs are running into.
     :param allowed_vmi_names: List of VM-names that the user is allowed to access.
+    :param additional_data: Additional data that should be added to the key. The data in this parameter needs to be json serializable.
     """
     lab_id: Identifier
     lab_instance_id: Identifier
     namespace_name: str
     allowed_vmi_names: List[str]
+    additional_data: Optional[Dict[str, Any]] = None
 
 
 def generate_auth_token(user_id: Identifier, lab_instance_token_params: LabInstanceTokenParams,
@@ -52,7 +54,8 @@ def generate_auth_token(user_id: Identifier, lab_instance_token_params: LabInsta
             'lab_id': lab_instance_token_params.lab_id,
             'lab_instance_id': lab_instance_token_params.lab_instance_id,
             'namespace_name': lab_instance_token_params.namespace_name,
-            'allowed_vmi_names': lab_instance_token_params.allowed_vmi_names
+            'allowed_vmi_names': lab_instance_token_params.allowed_vmi_names,
+            'additional_data': lab_instance_token_params.additional_data,
         }}, secret_key, algorithm=algorithm)
 
 
@@ -81,7 +84,8 @@ def decode_auth_token(token: str, secret_key: str, algorithms: Optional[List[str
         lab_id=data['lab_instance']['lab_id'],
         lab_instance_id=data['lab_instance']['lab_instance_id'],
         namespace_name=data['lab_instance']['namespace_name'],
-        allowed_vmi_names=data['lab_instance']['allowed_vmi_names']
+        allowed_vmi_names=data['lab_instance']['allowed_vmi_names'],
+        additional_data=data['lab_instance'].get('additional_data', None),
     )
 
 
